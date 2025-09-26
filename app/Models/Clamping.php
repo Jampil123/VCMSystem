@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Violations extends Model
+class Clamping extends Model
 {
     use HasFactory;
-    protected $table = 'violations';
 
     protected $fillable = [
-        'plate_number',
-        'owner_name',
-        'violation_type',
-        'fine_amount',
+        'ticket_no',
+        'plate_no',
+        'reason',
+        'location',
+        'date_clamped',
         'status',
+        'photo',
     ];
 }

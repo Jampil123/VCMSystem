@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/../../styles/dashboard.css">
     <link rel="stylesheet" href="/../../styles/style.css">
     <link rel="stylesheet" href="/../../styles/dialog.css">
+    <link rel="stylesheet" href="/../../styles/overlay.css">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -33,7 +34,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('clamping') }}">
+                <a href="{{ route('clampings') }}">
                     <i class='bx bx-car'></i>
                     <span class="link_name">Clamping</span>
                 </a>
@@ -71,7 +72,7 @@
         <div class="topbar">
             <div class="text">Clamping Management Dashboard</div>
             <div class="profile">
-                <img src="https://via.placeholder.com/40" alt="Profile">
+                <!-- <img src="https://via.placeholder.com/40" alt="Profile"> -->
                 <span class="name">Admin User</span>
                 <i class='bx bx-chevron-down'></i>
             </div>
@@ -82,6 +83,9 @@
             @yield('content')
         </div>
     </div>
+
+<script src="{{ asset('js/overlay.js') }}"></script>
+@stack('scripts') 
 
 </body>
 </html>

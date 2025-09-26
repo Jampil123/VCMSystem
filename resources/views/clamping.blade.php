@@ -37,72 +37,30 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Sample Rows -->
-                <tr>
-                    <td>1</td>
-                    <td>VN-1001</td>
-                    <td>ABC-1234</td>
-                    <td>Illegal Parking</td>
-                    <td>Main St. Corner Ave.</td>
-                    <td>2025-09-21</td>
-                    <td><span class="badge danger">Pending</span></td>
-                    <td>
-                        <button class="btn btn-info">View</button>
-                        <button class="btn btn-warning">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>VN-1002</td>
-                    <td>XYZ-5678</td>
-                    <td>No Parking Zone</td>
-                    <td>Market Area</td>
-                    <td>2025-09-20</td>
-                    <td><span class="badge success">Paid</span></td>
-                    <td>
-                        <button class="btn btn-info">View</button>
-                        <button class="btn btn-warning">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>VN-1002</td>
-                    <td>XYZ-5678</td>
-                    <td>No Parking Zone</td>
-                    <td>Market Area</td>
-                    <td>2025-09-20</td>
-                    <td><span class="badge success">Paid</span></td>
-                    <td>
-                        <button class="btn btn-info">View</button>
-                        <button class="btn btn-warning">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
-                 <tr>
-                    <td>2</td>
-                    <td>VN-1002</td>
-                    <td>XYZ-5678</td>
-                    <td>No Parking Zone</td>
-                    <td>Market Area</td>
-                    <td>2025-09-20</td>
-                    <td><span class="badge success">Paid</span></td>
-                    <td>
-                        <button class="btn btn-info">View</button>
-                        <button class="btn btn-warning">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
+                <tbody>
+                @foreach($clampings as $index => $clamping)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $clamping->ticket_no }}</td>
+                        <td>{{ $clamping->plate_no }}</td>
+                        <td>{{ $clamping->reason }}</td>
+                        <td>{{ $clamping->location }}</td>
+                        <td>{{ $clamping->date_clamped }}</td>
+                        <td>{{ $clamping->status }}</td>
+                        <td>
+                            <button class="btn btn-info">View</button>
+                            <button class="btn btn-warning">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
         </table>
     </div>
 </div>
 
 @include('partials.add-clamping')
 
-<!-- Script -->
 <script>
     const addBtn = document.getElementById('addBtn');
     const closeBtn = document.getElementById('closeBtn');

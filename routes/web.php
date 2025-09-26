@@ -10,6 +10,3 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/clamping', function () {
-    return view('clamping');
-})->name('clamping');

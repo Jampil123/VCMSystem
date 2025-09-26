@@ -1,11 +1,11 @@
 <div id="addPanel" class="dialog-overlay hidden">
     <div class="dialog-box">
         <h3>Add New Clamping</h3>
-        <form class="form-grid">
-
+        <form class="form-grid" id="clampingForm" action="/api/clampings" method="POST" enctype="multipart/form-data">
+         @csrf
             <div class="form-fields">
                 <label>Vehicle Plate Number:
-                    <input type="text" name="vehicle_plate" required>
+                    <input type="text" name="plate_no" required>
                 </label>
                 <label>Vehicle Type:
                     <input type="text" name="vehicle_type" required>
@@ -37,6 +37,9 @@
         </form>
     </div>
 </div>
+
+@include('partials.overlay')
+
 <script>
     const photoInput = document.getElementById('photoInput');
     const previewImg = document.getElementById('previewImg');
