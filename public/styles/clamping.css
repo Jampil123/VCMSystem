@@ -7,7 +7,6 @@
     color: #333;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    /* height: 85vh; */
 }
 
 .clamping-container h2 {
@@ -20,7 +19,7 @@
 
 .clamping-container .btn-primary {
     display: inline-block;
-    background: #0e95ef;
+    background: #4361ee;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -31,7 +30,7 @@
     transition: background 0.3s ease;
 }
 .clamping-container .btn-primary:hover {
-    background: #2980b9;
+    background: #4895ef;
 }
 
 /* Table Styling */
@@ -41,7 +40,7 @@
 }
 
 .clamping-container table thead {
-    background: #5913c9;
+    background: #4895ef;
     color: #ffffff;
 }
 
@@ -88,7 +87,7 @@
 }
 
 .btn-primary { background: #007bff; color: #fff; }
-.btn-secondary { background: #6c757d; color: #fff; }
+.btn-secondary { background: #4361ee; color: #fff; }
 .btn-info { background: #17a2b8; color: #fff; }
 .btn-warning { background: #ffc107; color: #000; }
 .btn-danger { background: #dc3545; color: #fff; }

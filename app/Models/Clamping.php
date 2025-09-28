@@ -17,5 +17,6 @@ class Clamping extends Model
         'date_clamped',
         'status',
         'photo',
+        'fine_amount',
     ];
 }

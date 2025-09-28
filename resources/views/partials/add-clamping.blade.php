@@ -16,6 +16,9 @@
                 <label>Location:
                     <input type="text" name="location" required>
                 </label>
+                <label>Fine Amount:
+                    <input type="text" name="fine_amount" required>
+                </label>
             </div>
 
             <!-- Upload box -->

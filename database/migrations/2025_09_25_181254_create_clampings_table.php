@@ -18,8 +18,9 @@ return new class extends Migration
         $table->string('reason');
         $table->string('location');
         $table->dateTime('date_clamped');
-        $table->string('status')->default('Active'); // Active / Released
-        $table->string('photo')->nullable(); // store image path
+        $table->string('status')->default('pending'); 
+        $table->string('photo')->nullable(); 
+        $table->decimal('fine_amount', 10, 2)->default(0);
         $table->timestamps();
     });
     }

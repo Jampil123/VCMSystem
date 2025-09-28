@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (form) {
         form.addEventListener("submit", async (e) => {
-            e.preventDefault(); // prevent default form submit
+            e.preventDefault(); 
             overlay.classList.remove("hidden");
             overlayMsg.textContent = "Saving...";
             overlaySub.textContent = "";

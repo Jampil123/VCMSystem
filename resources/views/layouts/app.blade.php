@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Clamping Dashboard')</title>
 
+    <link rel="stylesheet" href="/../../styles/payments.css">
     <link rel="stylesheet" href="/../../styles/clamping.css">
     <link rel="stylesheet" href="/../../styles/dashboard.css">
     <link rel="stylesheet" href="/../../styles/style.css">
     <link rel="stylesheet" href="/../../styles/dialog.css">
     <link rel="stylesheet" href="/../../styles/overlay.css">
-
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
     <div class="sidebar">
@@ -40,7 +42,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('payments') }}">
                     <i class='bx bx-user'></i>
                     <span class="link_name">Payments</span>
                 </a>
@@ -85,6 +87,8 @@
     </div>
 
 <script src="{{ asset('js/overlay.js') }}"></script>
+<script src="{{ asset('js/payment.js') }}"></script>
+
 @stack('scripts') 
 
 </body>
