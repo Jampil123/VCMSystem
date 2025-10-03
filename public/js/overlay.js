@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     overlayMsg.textContent = "✅ Clamping added successfully!";
                     overlaySub.textContent = "Redirecting to dashboard...";
                     setTimeout(() => {
-                        window.location.href = "/api/clampings"; 
+                        window.location.href = "/clampings"; 
                     }, 2000);
                 } else {
                     overlayMsg.textContent = "⚠️ Failed to save.";

@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     overlayMsg.textContent = "✅ Payment recorded successfully!";
                     overlaySub.textContent = "Redirecting...";
                     setTimeout(() => {
-                        window.location.href = "/api/payments";
+                        window.location.href = "/payments";
                     }, 2000);
                 } else {
                     overlayMsg.textContent = "⚠️ Failed to save payment.";

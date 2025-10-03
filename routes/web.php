@@ -1,11 +1,39 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClampingController;
+use App\Http\Controllers\PaymentController;
 
-Route::get('/', function () {
-    return view('layouts.app    ');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard'); 
+    })->name('dashboard');
+
+    // Clamping
+    Route::get('/clampings', [ClampingController::class, 'index'])->name('clampings');
+    Route::post('/clampings', [ClampingController::class, 'store']);
+
+    // Payments
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
+    Route::post('/payments', [PaymentController::class, 'store']);
+
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');

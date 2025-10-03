@@ -1,0 +1,70 @@
+/* Overlay background */
+.auth-overlay-v2 {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Dialog box */
+.auth-dialog-v2 {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 15px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: authFadeIn-v2 0.3s ease-in-out;
+}
+
+/* Spinner */
+.auth-spinner-v2 {
+  width: 50px;
+  height: 50px;
+  margin: 20px auto;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #4CAF50;
+  border-radius: 50%;
+  animation: authSpin-v2 1s linear infinite;
+}
+
+/* Success icon */
+.auth-success-v2 {
+  font-size: 36px;
+  color: #4CAF50;
+  margin: 20px 0;
+}
+
+/* Messages */
+.auth-message-v2 {
+  font-size: 18px;
+  color: #333;
+  margin-top: 10px;
+}
+
+.auth-sub-v2 {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* Animations */
+@keyframes authSpin-v2 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes authFadeIn-v2 {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hidden state */
+.hidden {
+    display: none;
+}

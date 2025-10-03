@@ -1,7 +1,7 @@
 <div id="addPanel" class="dialog-overlay hidden">
     <div class="dialog-box">
         <h3>Add New Clamping</h3>
-        <form class="form-grid" id="clampingForm" action="/api/clampings" method="POST" enctype="multipart/form-data">
+        <form class="form-grid" id="clampingForm" action="{{ route('clampings') }}" method="POST" enctype="multipart/form-data">
          @csrf
             <div class="form-fields">
                 <label>Vehicle Plate Number:

@@ -4,15 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\Payee;
 use App\Models\Clamping;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {   
-     public function index()
+    public function index()
     {
+        $today = Carbon::today()->toDateString();
+
+        $totalCollected = DB::table('payees')
+            ->whereDate('payment_date', $today)
+            ->sum('amount_paid');
+
+        $unpaidViolations = DB::table('clampings')
+            ->where('status', 'pending')
+            ->count();
+
+        $ticketsToday = DB::table('clampings')
+            ->whereDate('date_clamped', $today)
+            ->count();
+
         $payments = Payee::with('clamping')->get();
-        return view('payment', compact('payments'));
+
+        return view('payment', compact(
+            'totalCollected',
+            'unpaidViolations',
+            'ticketsToday',
+            'payments'
+        ));
     }
 
     public function store(Request $request)
@@ -35,7 +57,7 @@ class PaymentController extends Controller
 
         $payee = Payee::create($validated);
 
-        $clamping->update(['status' => 'paid']);
+        $clamping->update(['status' => 'Paid']);
 
         return response()->json([
             'success' => true,
@@ -43,6 +65,5 @@ class PaymentController extends Controller
             'data'    => $payee,
         ], 201);
     }
-
 
 }
