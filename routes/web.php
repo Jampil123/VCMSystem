@@ -15,6 +15,10 @@ use App\Http\Controllers\PaymentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view('auth.login');
+});
+
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -37,3 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/payments', [PaymentController::class, 'store']);
 
 });
+
+Route::get('/users', function () {
+        return view('users'); 
+    })->name('users');

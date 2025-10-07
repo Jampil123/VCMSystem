@@ -32,7 +32,7 @@
   text-align: center;
 }
 
-.card i {
+.reports-container .reports .card i {
   font-size: 2rem;
   color: #4CAF50;
 }
