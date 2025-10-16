@@ -63,14 +63,24 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate(); // security: prevent session fixation
-            return redirect()->intended('/dashboard');
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            if ($user->role_id === 1) {
+                return redirect()->intended('/dashboard');
+            } elseif ($user->role_id === 2) {
+                return redirect()->intended('/enforcers');
+            } else {
+                return redirect()->intended('/dashboard');
+            }
         }
 
         return back()->withErrors([
             'login' => 'Invalid username/email or password.',
         ])->onlyInput('login');
     }
+
 
     // Optional: logout
     public function logout(Request $request)

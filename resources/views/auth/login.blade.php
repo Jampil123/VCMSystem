@@ -13,6 +13,9 @@
 
 </head>
 <body>
+    <div class="auth-mobile-logo-bar">
+        <img src="/images/logo 2.png" alt="Auth Logo">
+    </div>
     <div class="auth-container" id="auth-container">
         <div class="auth-background"></div>
 
@@ -54,6 +57,9 @@
                 <div class="auth-extra-links">
                     <a href="#">Forgot password?</a>
                 </div>
+                <button type="button" class="mobile-register-button" onclick="window.location.href='/register'">
+                     Don’t have an account? Register
+                </button>
             </form>
         </div>
 

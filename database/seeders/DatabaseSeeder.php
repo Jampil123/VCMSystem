@@ -32,5 +32,19 @@ class DatabaseSeeder extends Seeder
             'status_id' => 2, // assuming ID 2 = Approved in UserStatusesSeeder
             'password' => Hash::make('admin123'), // 🔑 Default password
         ]);
+
+        // ✅ Default Enforcer Account
+        User::create([
+            'f_name' => 'Juan',
+            'l_name' => 'Dela Cruz',
+            'enforcer_id' => 'ENF-0001',
+            'username' => 'enforcer1',
+            'email' => 'enforcer1@example.com',
+            'phone' => '09987654321',
+            'role_id' => 2,   
+            'status_id' => 2,
+            'password' => Hash::make('enforcer123'),
+        ]);
+        
     }
 }

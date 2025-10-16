@@ -222,39 +222,66 @@
       color:#4e5de3;
       text-decoration:none;
     }
-
-    /* Responsive */
-    @media (max-width:768px){
-      .auth-container{
-        height:auto;
-        flex-direction:column;
-        overflow:hidden;
-      }
-
-      .auth-overlay-container,
-      .auth-form-container{
-        width:100%;
-        height:auto;
-        position:relative;
-        transform:none!important;
-      }
-
-      .auth-overlay{
-        display:none;
-      }
-
-      .auth-register-container,
-      .auth-login-container{
-        opacity:1!important;
-        transform:none!important;
-      }
-
-      .auth-container.auth-active .auth-login-container{
-        transform:none!important;
-      }
-
-      .auth-logo-bar{
-        position:relative;
-        padding:20px 0 10px;
-      }
+    .mobile-register-button {
+      display: none;
+      pointer-events: none;
+      opacity: 0.5;
     }
+    .auth-mobile-logo-bar {
+      display: none;
+    }
+
+/* --- MOBILE VIEW --- */
+@media (max-width: 768px) {
+
+  body {
+    margin: 5px;
+  }
+
+  .auth-register-container,
+  .auth-overlay-container {
+    display: none !important;
+  }
+
+  .auth-container {
+    height: auto;
+  }
+
+  .auth-login-container {
+    width: 100% !important;
+    position: relative !important;
+    left: 0 !important;
+    transform: none !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    height: auto !important;
+  }
+
+  /* hide desktop logo */
+  .auth-logo-bar {
+    display: none !important;
+  }
+
+  .auth-mobile-logo-bar {
+    display: block;
+    position: absolute; /* stay at top */
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding-top: 20px;
+    text-align: center;
+    z-index: 1000;
+    background: transparent;
+  }
+
+  .auth-mobile-logo-bar img {
+    height: 200px;
+    width: auto;
+  }
+
+}
+
+
+
+
+

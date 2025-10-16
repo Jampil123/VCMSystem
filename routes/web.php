@@ -35,7 +35,10 @@ Route::middleware('auth')->group(function () {
     // Clamping
     Route::get('/clampings', [ClampingController::class, 'index'])->name('clampings');
     Route::post('/clampings', [ClampingController::class, 'store']);
-
+    
+    // Enforcer add clamping
+    
+    
     // Payments
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
     Route::post('/payments', [PaymentController::class, 'store']);
@@ -45,3 +48,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/users', function () {
         return view('users'); 
     })->name('users');
+
+Route::get('/enforcers', function () {
+        return view('dashboards.overview'); 
+    })->name('overview');
+
+Route::get('/add-clamping', [ClampingController::class, 'create'])->name('add.clamping');

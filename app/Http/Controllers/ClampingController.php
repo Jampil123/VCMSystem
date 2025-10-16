@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Models\Clamping;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ClampingController extends Controller
-{
+{   
+    public function create()
+    {
+        // Return the Blade view for adding a new clamping record
+        return view('dashboards.enforcer-add-clamping');
+    }
     public function index()
     {
         $clampings = Clamping::orderBy('created_at', 'desc')->get();
@@ -16,12 +22,15 @@ class ClampingController extends Controller
 
     public function store(Request $request)
     {
+
+        Log::info('Photo from request:', [$request->file('photo')]);
+
         $validated = $request->validate([
             'plate_no' => 'required|string|max:20',
             'vehicle_type'  => 'required|string|max:50',
             'reason'        => 'required|string|max:255',
             'location'      => 'required|string|max:255',
-            'photo'         => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'fine_amount'   => 'required|numeric|min:0',
         ]);
 
