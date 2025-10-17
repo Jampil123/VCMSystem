@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (form) {
         form.addEventListener("submit", async (e) => {
-            e.preventDefault(); 
+            e.preventDefault();
             overlay.classList.remove("hidden");
             overlayMsg.textContent = "Saving...";
             overlaySub.textContent = "";
@@ -20,12 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 const data = await response.json();
 
-                if (data.success) {
+                if (response.ok && data.success) {
                     overlayMsg.textContent = "✅ Clamping added successfully!";
-                    overlaySub.textContent = "Redirecting to dashboard...";
+                    overlaySub.innerHTML = `
+                        <button id="printReceiptBtn" class="btn btn-print">🖨️ Print Receipt</button>
+                        <p>or wait to be redirected...</p>
+                    `;
+
+                    // Redirect after 5 seconds
                     setTimeout(() => {
-                        window.location.href = "/clampings"; 
-                    }, 2000);
+                        window.location.href = "/clampings";
+                    }, 5000);
+
+                    // Handle print button click
+                    document.getElementById("printReceiptBtn").addEventListener("click", () => {
+                        window.open(`/clampings/receipt/${data.id}`, "_blank");
+                    });
                 } else {
                     overlayMsg.textContent = "⚠️ Failed to save.";
                     overlaySub.textContent = data.message || "";

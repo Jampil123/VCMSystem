@@ -35,7 +35,9 @@ Route::middleware('auth')->group(function () {
     // Clamping
     Route::get('/clampings', [ClampingController::class, 'index'])->name('clampings');
     Route::post('/clampings', [ClampingController::class, 'store']);
+    Route::get('/clampings/receipt/{id}', [ClampingController::class, 'print'])->name('clampings.print'); 
     
+
     // Enforcer add clamping
     
     
@@ -44,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/payments', [PaymentController::class, 'store']);
 
 });
+
+Route::get('/verify/{id}', [ClampingController::class, 'verify'])->name('clampings.verify');
 
 Route::get('/users', function () {
         return view('users'); 

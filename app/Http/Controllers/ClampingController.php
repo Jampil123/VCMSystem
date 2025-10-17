@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use App\Models\Clamping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ClampingController extends Controller
 {   
@@ -58,10 +59,31 @@ class ClampingController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Clamping updated successfully',
-            'data'    => $clamping,
+            'id' => $clamping->id,
         ]);
     }
+
+    public function print($id)
+    {   
+        $clamping = Clamping::findOrFail($id);
+
+        // Generate QR code for this specific ticket
+        $qrCode = QrCode::size(120)->generate(url('/verify/' . $clamping->id));
+
+        return view('partials.receipt', compact('clamping', 'qrCode'));
+    }
+
+    public function verify($id)
+    {
+        $clamping = Clamping::find($id);
+
+        if (!$clamping) {
+            return view('verify.notfound');
+        }
+
+        return view('verify.portal', compact('clamping'));
+    }
+
     
     public function show($id)
     {
