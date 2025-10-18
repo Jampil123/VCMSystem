@@ -63,4 +63,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(UserStatus::class, 'status_id');
     }
+
+    public function details()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
 }

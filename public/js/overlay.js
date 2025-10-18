@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>or wait to be redirected...</p>
                     `;
 
-                    // Redirect after 5 seconds
                     setTimeout(() => {
                         window.location.href = "/clampings";
                     }, 5000);

@@ -12,7 +12,6 @@ class ClampingController extends Controller
 {   
     public function create()
     {
-        // Return the Blade view for adding a new clamping record
         return view('dashboards.enforcer-add-clamping');
     }
     public function index()
@@ -23,7 +22,6 @@ class ClampingController extends Controller
 
     public function store(Request $request)
     {
-
         Log::info('Photo from request:', [$request->file('photo')]);
 
         $validated = $request->validate([
@@ -66,8 +64,6 @@ class ClampingController extends Controller
     public function print($id)
     {   
         $clamping = Clamping::findOrFail($id);
-
-        // Generate QR code for this specific ticket
         $qrCode = QrCode::size(120)->generate(url('/verify/' . $clamping->id));
 
         return view('partials.receipt', compact('clamping', 'qrCode'));
@@ -83,7 +79,6 @@ class ClampingController extends Controller
 
         return view('verify.portal', compact('clamping'));
     }
-
     
     public function show($id)
     {
