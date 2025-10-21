@@ -37,7 +37,7 @@
         </div>
 
         @if(strtolower($clamping->status) !== 'paid')
-            <a href="#" class="pay-btn">💳 Pay Online</a>
+            <a href="#" class="pay-btn">Pay Online</a>
         @endif
 
         <div class="ticket-footer">

@@ -121,6 +121,8 @@ header h2 {
 /* ENTRY LIST */
 .entries {
     margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 .entry {

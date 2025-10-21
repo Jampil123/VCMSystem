@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Add Clamping</title>
 
   <link rel="stylesheet" href="/../../styles/enforcer-add-clamping.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
 </head>
 <body>
@@ -39,76 +41,31 @@
   </div>
 
   <label for="photo">Photo</label>
-   <div class="photo-section">
-      <button type="button" id="takePhotoBtn" style="position: relative; overflow: hidden;">
+    <div class="photo-section">
+      <button type="button" id="takePhotoBtn">
         <i class="fa-solid fa-camera"></i> Take Photo
-        <input type="file" id="photo" name="photo" accept="image/*" capture="environment" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
       </button>
+      <input type="file" id="photo" name="photo" accept="image/*" capture="environment">
       <img id="preview" alt="Photo Preview" style="display:none; width:100%; border-radius:10px;">
     </div>
 
-
   <button type="submit">ADD CLAMPING</button>
+
+  <!-- Success Popup -->
+  <div id="successPopup" class="popup">
+    <div class="popup-content">
+      <i class="fa-solid fa-circle-check"></i>
+      <p id="popupMessage">Clamping added successfully!</p>
+    </div>
+  </div>
+
+
 </form>
-
     <script>
-    document.getElementById('backBtn').addEventListener('click', function() {
-      window.location.href = '/enforcers'; 
-    });
-  </script>
-  <script>
-document.getElementById('takePhotoBtn').addEventListener('click', () => {
-    document.getElementById('photo').click();
-});
-
-// preview the photo
-document.getElementById('photo').addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    const preview = document.getElementById('preview');
-
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-            preview.style.display = 'block';
-        }
-        reader.readAsDataURL(file);
-    } else {
-        preview.style.display = 'none';
-    }
-});
-
-  // Handle form submission
-  document.getElementById('clampingForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-
-    try {
-      const response = await fetch("{{ route('clampings') }}", {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        credentials: 'include'
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        alert(result.message);
-        window.location.href = "/enforcers"; // redirect to dashboard
-      } else {
-        alert("Failed to add clamping record.");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("An error occurred while submitting the form.");
-    }
-  });
-</script>
-
+        window.clampingsRoute = "{{ route('clampings') }}";
+    </script>
+     <script src="/../../js/navigation.js"></script>
+     <script src="/../../js/enforcer-add-clamping.js"></script>
   </div>
 
 </body>

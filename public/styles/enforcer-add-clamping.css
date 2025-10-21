@@ -131,3 +131,51 @@
     display: none;
     border: 1px solid #ddd;
   }
+
+  /* Popup background */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+/* Popup box */
+.popup-content {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  animation: fadeInUp 0.4s ease;
+}
+
+.popup-content i {
+  color: #28a745;
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.popup-content p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

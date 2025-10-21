@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClampingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EnforcerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,15 +37,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/users/fetch', [UserController::class, 'fetchUsers'])->name('users.fetch');
 
-
     // Clamping
     Route::get('/clampings', [ClampingController::class, 'index'])->name('clampings');
     Route::post('/clampings', [ClampingController::class, 'store']);
     Route::get('/clampings/receipt/{id}', [ClampingController::class, 'print'])->name('clampings.print'); 
-    
 
     // Enforcer add clamping
-    
+    Route::get('/add-clamping', [ClampingController::class, 'create'])->name('add.clamping');
+    Route::get('/enforcer/dashboard', [EnforcerController::class, 'index'])->name('dashboard');
+    Route::get('/enforcer/summary', [EnforcerController::class, 'getSummary']);
+    Route::get('/enforcer/profile', [EnforcerController::class, 'profile'])->name('enforcer.profile');
     
     // Payments
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
@@ -54,12 +56,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/verify/{id}', [ClampingController::class, 'verify'])->name('clampings.verify');
 
-// Route::get('/users', function () {
-//         return view('users'); 
-//     })->name('users');
 
-Route::get('/enforcers', function () {
-        return view('dashboards.overview'); 
-    })->name('overview');
+// Route::get('/enforcers', function () {
+//         return view('dashboards.overview'); 
+//     })->name('overview');
 
-Route::get('/add-clamping', [ClampingController::class, 'create'])->name('add.clamping');
+
