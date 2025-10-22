@@ -81,9 +81,37 @@
 .payments-table tr:hover {
   background: #f1f1f1;
 }
-.paid { color: green; font-weight: bold; }
-.unpaid { color: red; font-weight: bold; }
-.pending { color: orange; font-weight: bold; }
+.status {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+/* Status-specific colors */
+.status.paid {
+    background-color: #28a745;color: #fff;
+}
+
+.status.pending {
+    background-color: #ffc107; /* yellow/orange */
+    color: #000;
+}
+
+.status.released {
+    background-color: #007bff; /* blue */
+    color: #fff;
+}
+
+.status.unknown {
+    background-color: #6c757d; /* gray */
+    color: #fff;
+}
+
+/* 
+.paid { color: green; font-weight: bold; } */
+/* .unpaid { color: red; font-weight: bold; }
+.pending { color: orange; font-weight: bold; } */
 
 .walkin-form {
   max-width: 1200px;

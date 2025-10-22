@@ -55,7 +55,10 @@
                     <td>{{ $payment->clamping->reason ?? '—' }}</td>
                     <td>{{ ucfirst($payment->payment_method) }}</td>
                     <td>₱{{ number_format($payment->amount_paid, 2) }}</td>
-                    <td class="paid">Paid</td>
+                    <td>
+                        <span class="status paid">Paid</span>
+                    </td>
+
                     <td>{{ \Carbon\Carbon::parse($payment->payment_date)->format('m/d/Y') }}</td>
                     <td>
                         <button>View Receipt</button>

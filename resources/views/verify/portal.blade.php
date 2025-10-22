@@ -36,9 +36,12 @@
             <p>Issued by: <strong>{{ $clamping->enforcer_name ?? 'Traffic Enforcer' }}</strong></p>
         </div>
 
+        
+
         @if(strtolower($clamping->status) !== 'paid')
-            <a href="#" class="pay-btn">Pay Online</a>
+            <a href="{{ url('/pay/' . $clamping->ticket_no) }}" class="pay-btn">Pay Online</a>
         @endif
+
 
         <div class="ticket-footer">
             <p>© {{ date('Y') }} City Traffic Department — All Rights Reserved</p>

@@ -6,6 +6,7 @@ use App\Http\Controllers\ClampingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EnforcerController;
+use App\Http\Controllers\PayMongoWebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,11 +52,19 @@ Route::middleware('auth')->group(function () {
     // Payments
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
     Route::post('/payments', [PaymentController::class, 'store']);
+   
+
 
 });
 
 Route::get('/verify/{id}', [ClampingController::class, 'verify'])->name('clampings.verify');
 
+Route::get('/pay/{ticket_no}', [PaymentController::class, 'createCheckout']);
+Route::post('/webhook/paymongo', [PaymentController::class, 'webhook']);
+Route::get('/payment/success/{id}', [PaymentController::class, 'success']);
+Route::get('/payment/cancel', [PaymentController::class, 'cancel']);
+
+    Route::post('/webhook/paymongo', [PayMongoWebhookController::class, 'handle']);
 
 // Route::get('/enforcers', function () {
 //         return view('dashboards.overview'); 

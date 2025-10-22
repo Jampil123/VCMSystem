@@ -12,8 +12,10 @@ class Payee extends Model
     protected $fillable = [
         'ticket_no',
         'name',
+        'contact_number',
         'payment_method',
         'amount_paid',
+        'payment_date',
     ];
 
     public function clamping()

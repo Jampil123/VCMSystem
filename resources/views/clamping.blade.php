@@ -46,7 +46,23 @@
                         <td>{{ $clamping->reason }}</td>
                         <td>{{ $clamping->location }}</td>
                         <td>{{ $clamping->date_clamped }}</td>
-                        <td>{{ $clamping->status }}</td>
+                        <td>
+                            @php
+                                $status = strtolower($clamping->status ?? 'unknown');
+
+                                // map database statuses to CSS classes
+                                $statusClass = match($status) {
+                                    'paid' => 'active',
+                                    'pending' => 'probation',
+                                    'released' => 'inactive',
+                                    default => '',
+                                };
+                            @endphp
+                            <span class="status {{ $statusClass }}">
+                                {{ ucfirst($status) }}
+                            </span>
+                        </td>
+
                         <td>
                             <button class="btn btn-info">View</button>
                             <button class="btn btn-warning">Edit</button>

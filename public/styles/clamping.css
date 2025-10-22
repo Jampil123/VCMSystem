@@ -77,6 +77,18 @@
     font-size: 14px;
 }
 
+.status {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.status.active {background-color: #28a745;color: #fff;}
+.status.probation {background-color: #ffc107;color: #000;}
+.status.inactive {background-color: #dc3545;color: #fff;}
+
+
 /* Buttons */
 .btn {
     padding: 6px 12px;
@@ -94,7 +106,6 @@
 
 .btn:hover { opacity: 0.9; }
 
-/* Table */
 .table-wrapper {
     overflow-x: hidden;
     border: 1px solid #ddd;
