@@ -32,19 +32,20 @@
 
         <ul class="nav">
             <li>
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <i class='bx bx-grid-alt'></i>
                     <span class="link_name">Dashboard</span>
                 </a>
             </li>
+
             <li>
-                <a href="{{ route('clampings') }}">
+                <a href="{{ route('clampings') }}" class="{{ request()->routeIs('clampings') ? 'active' : '' }}">
                     <i class='bx bx-car'></i>
                     <span class="link_name">Clamping</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('payments') }}">
+                <a href="{{ route('payments') }}" class="{{ request()->routeIs('payments') ? 'active' : '' }}">
                     <i class='bx bx-user'></i>
                     <span class="link_name">Payments</span>
                 </a>
@@ -56,13 +57,13 @@
                 </a>
             </li>
              <li>
-                <a href="{{ route('users') }}">
+                <a href="{{ route('users') }}" class="{{ request()->routeIs('users') ? 'active' : '' }}">
                     <i class='bx bx-user'></i>
                     <span class="link_name">User Management</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('logout') }}" class="{{ request()->routeIs('logout') ? 'active' : '' }}">
                     <i class='bx bx-log-out'></i>
                     <span class="link_name">Logout</span>
                 </a>
@@ -90,6 +91,7 @@
 
 <script src="{{ asset('js/overlay.js') }}"></script>
 <script src="{{ asset('js/payment.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 @stack('scripts') 
 

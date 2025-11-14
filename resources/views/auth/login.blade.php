@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="auth-mobile-logo-bar">
-        <img src="/images/logo 2.png" alt="Auth Logo">
+        <img src="/images/VCMSlogo.png" alt="Auth Logo">
     </div>
     <div class="auth-container" id="auth-container">
         <div class="auth-background"></div>
@@ -48,7 +48,7 @@
             <form action="{{ route('login') }}" method="POST" id="loginForm" class="auth-form">
                 @csrf
                 <div class="auth-logo-bar">
-                    <img src="/images/logo 2.png" alt="Auth Logo">
+                    <img src="/images/VCMSlogo.png" alt="Auth Logo">
                 </div>
                 <h2>Sign In</h2>
                 <input type="text" class="auth-input" placeholder="Username or Email" name="login" required>

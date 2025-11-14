@@ -10,38 +10,37 @@
         <p>Here’s an overview of today’s clamping reports</p>
 
         <div class="reports-container">
-            <!-- Stats Cards -->
-            <div class="reports">
-                <div class="card">
-                    <i class='bx bx-car'></i>
-                    <h3>120</h3>
-                    <p>Total Clamped Vehicles</p>
-                    <span class="trend up">+12%</span>
-                </div>
-                <div class="card">
-                    <i class='bx bx-error'></i>
-                    <h3>45</h3>
-                    <p>Active Violations</p>
-                    <span class="trend down">-8%</span>
-                </div>
-                <div class="card">
-                    <i class='bx bx-money'></i>
-                    <h3>₱56,800</h3>
-                    <p>Total Collected Fines</p>
-                    <span class="trend up">+18%</span>
+            <!-- Move chart-section to the top -->
+            <div class="chart-section">
+                <h4>Violations per Day</h4>
+                <div>
+                    <canvas id="violationsChart"></canvas>
                 </div>
             </div>
 
-            <!-- Chart Section -->
-            <div class="chart-section">
-                <h4>Violations per Day</h4>
-                <div class="chart-placeholder">
-                    <!-- You can integrate Chart.js or any chart library here -->
-                    <p>[Chart of Violations Here]</p>
+            <!-- Cards go below -->
+            <div class="reports">
+                <div class="card">
+                    <i class='bx bx-car'></i>
+                    <h3>{{ $totalClamped }}</h3>
+                    <p>Total Clamped Vehicles</p>
+                </div>
+
+                <div class="card">
+                    <i class='bx bx-error'></i>
+                    <h3>{{ $activeViolations }}</h3>
+                    <p>Active Violations</p>
+                </div>
+
+                <div class="card">
+                    <i class='bx bx-money'></i>
+                    <h3>₱{{ number_format($totalFines, 2) }}</h3>
+                    <p>Total Collected Fines</p>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="enforcers">
         <h3>Enforcers</h3>
@@ -55,42 +54,77 @@
                         <th>Assigned Area</th>
                     </tr>
                 </thead>
-                <tbody>
+                   @forelse($enforcers as $enforcer)
                     <tr>
-                        <td>Juan Dela Cruz</td>
-                        <td>juan@clamping.com</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Main Street</td>
+                        <td>{{ ($enforcer->f_name ?? '') . ' ' . ($enforcer->l_name ?? '') }}</td>
+                        <td>{{ $enforcer->email }}</td>
+                        <td>
+                            <span class="status {{ strtolower($enforcer->status->status ?? 'unknown') }}">
+                                {{ $enforcer->status->status ?? 'Unknown' }}
+                            </span>
+                        </td>
+                        <td>{{ $enforcer->enforcer_id ?? '-' }}</td>
                     </tr>
+                    @empty
                     <tr>
-                        <td>Maria Santos</td>
-                        <td>maria@clamping.com</td>
-                        <td><span class="status probation">Probation</span></td>
-                        <td>Downtown</td>
+                        <td colspan="4">No enforcers found.</td>
                     </tr>
-                    <tr>
-                        <td>Carlos Reyes</td>
-                        <td>carlos@clamping.com</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Market Area</td>
-                    </tr>
-                    <tr>
-                        <td>Maria Santos</td>
-                        <td>maria@clamping.com</td>
-                        <td><span class="status probation">Probation</span></td>
-                        <td>Downtown</td>
-                    </tr>
-                    <tr>
-                        <td>Maria Santos</td>
-                        <td>maria@clamping.com</td>
-                        <td><span class="status probation">Probation</span></td>
-                        <td>Downtown</td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('violationsChart').getContext('2d');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {!! json_encode($violationsPerDay->pluck('date')) !!}, // dates from DB
+        datasets: [{
+            label: 'Violations per Day',
+            data: {!! json_encode($violationsPerDay->pluck('total')) !!}, // unpaid clampings
+            backgroundColor: '#22c55e', // green like your sample
+            borderRadius: 8, // rounded top corners
+            borderSkipped: false // round top
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Violations per Day',
+                font: { size: 16, weight: 'bold' }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1
+                },
+                title: {
+                    display: true,
+                    text: 'Number of Violations'
+                }
+            },
+            x: {
+                grid: { display: false },
+                title: {
+                    display: true,
+                    text: 'Date'
+                }
+            }
+        }
+    }
+});
+</script>
+
 @endsection
 

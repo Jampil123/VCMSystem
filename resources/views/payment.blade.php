@@ -61,7 +61,11 @@
 
                     <td>{{ \Carbon\Carbon::parse($payment->payment_date)->format('m/d/Y') }}</td>
                     <td>
-                        <button>View Receipt</button>
+                        @if($payment->clamping)
+                            <a href="{{ route('clampings.print', $payment->clamping->id) }}" target="_blank" class="btn btn-small">View Receipt</a>
+                        @else
+                            <span class="btn btn-small disabled">No Receipt</span>
+                        @endif
                     </td>
                 </tr>
                 @empty
@@ -120,6 +124,10 @@
         </div>
     </div>
 
+    
+
 </div>
 
 @endsection
+
+ 

@@ -69,4 +69,10 @@ class User extends Authenticatable
         return $this->hasOne(UserDetail::class);
     }
 
+    // Accessor for full name (f_name + l_name)
+    public function getFullNameAttribute()
+    {
+        return trim(($this->f_name ?? '') . ' ' . ($this->l_name ?? ''));
+    }
+
 }

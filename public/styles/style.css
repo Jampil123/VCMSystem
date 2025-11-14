@@ -16,6 +16,7 @@ html::-webkit-scrollbar {display: none;}
 .sidebar ul li {position: relative;margin: 10px 0;}
 .sidebar ul li a {display: flex;align-items: center;text-decoration: none;color: #333;border-radius: 12px;padding: 10px;transition: all 0.3s ease;}
 .sidebar ul li a:hover {background: #4895ef;color: #fff;}
+.sidebar ul li a.active { background: #4895ef; color: #fff; }
 .sidebar ul li a i {min-width: 40px;text-align: center;font-size: 22px;}
 .sidebar ul li .tooltip {position: absolute;left: 110%;top: 50%;transform: translateY(-50%);background: #4895ef;color: #fff;
     border-radius: 6px;padding: 5px 10px;font-size: 14px;white-space: nowrap;opacity: 0;pointer-events: none;transition: 0.3s;
